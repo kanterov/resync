@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
+   <extension
+         id="ru.nsu.ccfit.resync.commands"
+         name="resync commands"
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.ui.category.help"
+            description="Synchronize Eclipse Preferences"
+            id="ru.nsu.ccfit.resync.commands.synchronize"
+            name="Synchronize">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="ru.nsu.ccfit.resync.handlers.SampleHandler"
+            commandId="ru.nsu.ccfit.resync.commands.synchronize">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:help">
+            <command
+                  commandId="ru.nsu.ccfit.resync.commands.synchronize"
+                  id="ru.nsu.ccfit.resync.menus.help.synchronize"
+                  mnemonic="S">
+            </command>
+      </menuContribution>
+   </extension>
 </plugin>
