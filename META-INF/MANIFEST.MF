@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse Remote Synchronization
+Bundle-SymbolicName: ru.nsu.ccfit.resync
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: ru.nsu.ccfit.resync.Activator
+Bundle-Vendor: NSU FIT
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
