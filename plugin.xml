@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="ru.nsu.ccfit.resync.storage" name="Preference Storage" schema="schema/ru.nsu.ccfit.resync.store.exsd"/>
    <extension
          id="ru.nsu.ccfit.resync.commands"
          name="resync commands"
@@ -15,7 +16,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="ru.nsu.ccfit.resync.handlers.SampleHandler"
+            class="ru.nsu.ccfit.resync.handlers.SynchronizeHandler"
             commandId="ru.nsu.ccfit.resync.commands.synchronize">
       </handler>
    </extension>
@@ -29,5 +30,16 @@
                   mnemonic="S">
             </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="ru.nsu.ccfit.resync.storage">
+      <storageFactory
+            class="ru.nsu.ccfit.resync.storage.github.GithubStorageFactory"
+            displayName="Github">
+      </storageFactory>
+      <storageFactory
+            class="ru.nsu.ccfit.resync.storage.disk.DiskStorageFactory"
+            displayName="Local">
+      </storageFactory>
    </extension>
 </plugin>
