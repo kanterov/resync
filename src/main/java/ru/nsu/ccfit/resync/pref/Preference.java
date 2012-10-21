@@ -33,4 +33,9 @@ public class Preference {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "Preference [bundle=" + bundle + ", key=" + key + ", value=" + value + "]";
+    }
+
 }
