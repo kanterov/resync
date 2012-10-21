@@ -13,8 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import ru.nsu.ccfit.resync.storage.PreferenceStorage;
 import ru.nsu.ccfit.resync.storage.PreferenceStorageException;
 
-/*
- * Basic <code>PreferenceStorage</code> implementation that reads settings from disk
+/**
+ * Basic <code>PreferenceStorage</code> implementation that reads settings from
+ * disk
  */
 public class DiskStorage implements PreferenceStorage {
 
