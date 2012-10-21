@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import ru.nsu.ccfit.resync.pref.jdt.SpCleanup;
 
-/*
+/**
  * 
  * @author Gleb Kanterov <gleb@kanterov.ru>
  */
