@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.resync.pref;
 
-/*
+/**
  * Immutable class to store preference
  * 
  * @author Gleb Kanterov <gleb@kanterov.ru>
