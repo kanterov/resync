@@ -16,16 +16,16 @@ import org.junit.rules.TemporaryFolder;
 public class DiskStorageTests {
 
     @Rule
-    public final static TemporaryFolder folder = new TemporaryFolder();
+    public static final TemporaryFolder FOLDER = new TemporaryFolder();
 
-    public final static String EXAMPLE = "/ru/nsu/ccfit/resync/storage/disk/example.properties";
+    public static final String EXAMPLE = "/ru/nsu/ccfit/resync/storage/disk/example.properties";
 
     private static File exampleFile;
 
     @BeforeClass
     public static void setup() throws Exception {
         String content = new Scanner(DiskStorageTests.class.getResourceAsStream(EXAMPLE)).useDelimiter("\\A").next();
-        exampleFile = folder.newFile("example.properties");
+        exampleFile = FOLDER.newFile("example.properties");
         FileWriter writer = new FileWriter(exampleFile);
 
         writer.write(content);

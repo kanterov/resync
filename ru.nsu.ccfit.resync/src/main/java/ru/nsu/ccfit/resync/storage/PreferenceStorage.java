@@ -61,7 +61,7 @@ public interface PreferenceStorage {
      *             if <code>key</code> or <code>value</code> is
      *             <code>null</code>.
      */
-    public void put(String key, String value);
+    void put(String key, String value);
 
     /**
      * Returns the value associated with the specified <code>key</code> in this
@@ -88,7 +88,7 @@ public interface PreferenceStorage {
      *             if <code>key</code> is <code>null</code>. (A
      *             <code>null</code> default <i>is </i> permitted.)
      */
-    public String get(String key, String defaultValue);
+    String get(String key, String defaultValue);
 
     /**
      * Removes the value associated with the specified <code>key</code> in this
@@ -102,7 +102,7 @@ public interface PreferenceStorage {
      *            key whose mapping is to be removed from this node.
      * @see #get(String,String)
      */
-    public void remove(String key);
+    void remove(String key);
 
     /**
      * Removes all of the key-value associations.
@@ -113,7 +113,7 @@ public interface PreferenceStorage {
      * 
      * @see #remove(String)
      */
-    public void clear();
+    void clear();
 
     /**
      * Returns keys that are present in storage.
@@ -126,6 +126,6 @@ public interface PreferenceStorage {
      * @see #remove(String)
      * @see #put(String, String)
      */
-    public Set<String> keySet();
+    Set<String> keySet();
 
 }

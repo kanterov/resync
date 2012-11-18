@@ -12,12 +12,12 @@ import ru.nsu.ccfit.resync.storage.PreferenceStorage;
 
 public class SpCleanup implements PreferenceProvider {
 
-    private final String BUNDLE = "org.eclipse.jdt.ui";
-    private final String DELIMETER = "/";
-    private final String PREFIX = BUNDLE + DELIMETER;
+    private static final String BUNDLE = "org.eclipse.jdt.ui";
+    private static final String DELIMETER = "/";
+    private static final String PREFIX = BUNDLE + DELIMETER;
 
     // @formatter:off
-    private final List<String> OPTIONS = Arrays.asList(
+    private static final List<String> OPTIONS = Arrays.asList(
             PREFIX + "sp_cleanup.add_default_serial_version_id",
             PREFIX + "sp_cleanup.add_generated_serial_version_id",
             PREFIX + "sp_cleanup.add_missing_annotations",
