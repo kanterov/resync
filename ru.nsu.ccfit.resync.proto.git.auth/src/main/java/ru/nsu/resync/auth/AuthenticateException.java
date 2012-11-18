@@ -1,25 +1,21 @@
 package ru.nsu.resync.auth;
 
-public class AuthenticateException extends Exception
-{
+@SuppressWarnings("serial")
+public class AuthenticateException extends Exception {
 
-    public AuthenticateException()
-    {
+    public AuthenticateException() {
         super();
     }
 
-    public AuthenticateException(String message, Throwable cause)
-    {
+    public AuthenticateException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public AuthenticateException(String message)
-    {
+    public AuthenticateException(String message) {
         super(message);
     }
 
-    public AuthenticateException(Throwable cause)
-    {
+    public AuthenticateException(Throwable cause) {
         super(cause);
     }
 

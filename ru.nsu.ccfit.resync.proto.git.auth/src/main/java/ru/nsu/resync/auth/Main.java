@@ -10,30 +10,25 @@ import javax.swing.SwingUtilities;
 import org.eclipse.egit.github.core.Gist;
 import org.eclipse.egit.github.core.GistFile;
 
-public class Main
-{
+public class Main {
     private static final String ERROR_DIALOG_CAPTION = "Error";
     private static final String AUTHENTICATE_ERROR_LABEL = "Error while signing in.";
 
     private ConnectionDialog connectionDialog;
     private Authenticator authenticator;
 
-    public Main()
-    {
-        try
-        {
+    public Main() {
+        try {
             this.authenticator = new Authenticator();
             System.out.println("Login using old key");
             testWorkFlow();
-        } catch (AuthenticateException exception)
-        {
+        } catch (AuthenticateException exception) {
             showConnectionDialog();
         }
 
     }
 
-    private void testWorkFlow()
-    {
+    private void testWorkFlow() {
         String fileName = "Test.txt";
         Gist gist = GistDAO.createGist(authenticator, "Hello, GitHub!", "Test gist", fileName);
         String gistId = gist.getId();
@@ -47,38 +42,28 @@ public class Main
         System.out.println("All operations ended successfully!");
     }
 
-    private static void createAndShowGUI()
-    {
-        Main main = new Main();
+    private static void createAndShowGUI() {
+        new Main();
         System.exit(0);
     }
 
-    public static void main(String[] args)
-    {
-        SwingUtilities.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 createAndShowGUI();
             }
         });
     }
 
-    private void showConnectionDialog()
-    {
-        if (connectionDialog == null)
-        {
+    private void showConnectionDialog() {
+        if (connectionDialog == null) {
             connectionDialog = new ConnectionDialog();
-            connectionDialog.addWindowListener(new WindowAdapter()
-            {
+            connectionDialog.addWindowListener(new WindowAdapter() {
                 @Override
-                public void windowDeactivated(WindowEvent e)
-                {
-                    if (e.getSource() instanceof ConnectionDialog)
-                    {
+                public void windowDeactivated(WindowEvent e) {
+                    if (e.getSource() instanceof ConnectionDialog) {
                         ConnectionDialog dialog = (ConnectionDialog) e.getSource();
-                        if (dialog.isVisible())
-                        {
+                        if (dialog.isVisible()) {
                             return;
                         }
                         String login = dialog.getLogin();
@@ -92,16 +77,14 @@ public class Main
         connectionDialog.setVisible(true);
     }
 
-    private void connect(String login, String password)
-    {
+    private void connect(String login, String password) {
         System.out.format("Username :{%s}; Password :{%4s}\n", login, password);
-        try
-        {
+        try {
             this.authenticator = new Authenticator(login, password);
             testWorkFlow();
-        } catch (AuthenticateException exception)
-        {
-            JOptionPane.showMessageDialog(connectionDialog, AUTHENTICATE_ERROR_LABEL, ERROR_DIALOG_CAPTION, JOptionPane.ERROR_MESSAGE);
+        } catch (AuthenticateException exception) {
+            JOptionPane.showMessageDialog(connectionDialog, AUTHENTICATE_ERROR_LABEL, ERROR_DIALOG_CAPTION,
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }
