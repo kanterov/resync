@@ -1,4 +1,4 @@
-package ru.nsu.resync.auth;
+package ru.nsu.resync.git.auth;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

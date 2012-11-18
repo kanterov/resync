@@ -1,4 +1,4 @@
-package ru.nsu.resync.auth;
+package ru.nsu.resync.git.auth;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;

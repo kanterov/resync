@@ -1,4 +1,4 @@
-package ru.nsu.resync.auth;
+package ru.nsu.resync.git.auth;
 
 @SuppressWarnings("serial")
 public class AuthenticateException extends Exception {
