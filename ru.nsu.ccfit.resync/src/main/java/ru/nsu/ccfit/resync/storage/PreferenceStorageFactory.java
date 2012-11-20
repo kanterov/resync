@@ -24,7 +24,7 @@ public interface PreferenceStorageFactory {
      *            URL of location.
      * @return <tt>true</tt> only if implementation is able to handle location.
      */
-    public boolean canOpen(URL location);
+    boolean canOpen(URL location);
 
     /**
      * Returns a preference storage corresponding to the URL specified.
@@ -39,6 +39,6 @@ public interface PreferenceStorageFactory {
      *             if unsupported URLs type is passed in, or if location is not
      *             accessible.
      */
-    public PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException;
+    PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException;
 
 }
