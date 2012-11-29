@@ -28,7 +28,7 @@ public class DiskStorageFactory implements PreferenceStorageFactory {
     @Override
     public PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException {
         URI uri = null;
-
+        
         if (!canOpen(location)) {
             throw new PreferenceStorageException("url is not supported");
         }
