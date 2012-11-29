@@ -19,6 +19,11 @@
       <layout>p2</layout>
       <url>http://download.eclipse.org/releases/indigo</url>
     </repository>
+    <repository>
+      <id>egit-github</id>
+      <layout>p2</layout>
+      <url>http://download.eclipse.org/egit/github/updates</url>
+    </repository>
   </repositories>
 
   <build>
