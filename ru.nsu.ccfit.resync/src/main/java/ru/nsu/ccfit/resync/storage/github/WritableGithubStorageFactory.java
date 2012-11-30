@@ -2,45 +2,36 @@ package ru.nsu.ccfit.resync.storage.github;
 
 import java.net.URL;
 import java.util.Map;
-import java.util.regex.Pattern;
-
-import javax.crypto.spec.OAEPParameterSpec;
-
-import org.eclipse.swt.ole.win32.OleAutomation;
 
 import ru.nsu.ccfit.resync.storage.PreferenceStorage;
 import ru.nsu.ccfit.resync.storage.PreferenceStorageException;
 
 public class WritableGithubStorageFactory extends GithubStorageFactory {
 	private Authenticator authenticator;
-	
-	public WritableGithubStorageFactory()
-	{
+
+	public WritableGithubStorageFactory() {
 		this.authenticator = null;
 	}
-	public WritableGithubStorageFactory(Authenticator authenticator)
-	{
+
+	public WritableGithubStorageFactory(Authenticator authenticator) {
 		this.authenticator = authenticator;
 	}
-	
-	public void setAuthenticator(Authenticator authenticator)
-	{
+
+	public void setAuthenticator(Authenticator authenticator) {
 		this.authenticator = authenticator;
 	}
 
 	@Override
 	public PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException {
-		if (location == null)
-		{
+		if (location == null) {
 			throw new IllegalArgumentException("Location cannot be null");
 		}
-		
-		if (canOpen(location))
-		{
-			WritableGithubStorage writableGithubStorage = new WritableGithubStorage(location,authenticator);
+
+		if (canOpen(location)) {
+			WritableGithubStorage writableGithubStorage = new WritableGithubStorage(location, authenticator);
 			writableGithubStorage.pull();
 			return writableGithubStorage;
 		}
-		throw new PreferenceStorageException("Cannot open such an URL:"+ location.toString());
+		throw new PreferenceStorageException("Cannot open such an URL:" + location.toString());
 	}
 }

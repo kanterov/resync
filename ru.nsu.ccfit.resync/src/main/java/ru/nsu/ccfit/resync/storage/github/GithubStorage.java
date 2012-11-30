@@ -21,7 +21,7 @@ import ru.nsu.ccfit.resync.storage.PreferenceStorageException;
 public class GithubStorage implements PreferenceStorage {
 
 	private static final int EXCLUDE_FIRST_SLASH_POSITION = 1;
-	
+
 	protected final Map<String, String> storage;
 	private final URL location;
 	protected Gist workingGist;
@@ -37,7 +37,6 @@ public class GithubStorage implements PreferenceStorage {
 		return false;
 	}
 
-
 	@Override
 	public void push() throws PreferenceStorageException {
 		throw new PreferenceStorageException("This class is read only");
@@ -45,28 +44,27 @@ public class GithubStorage implements PreferenceStorage {
 
 	@Override
 	public void pull() throws PreferenceStorageException {
-		
+
 		String gistId = location.getPath().substring(EXCLUDE_FIRST_SLASH_POSITION);
 		Gist gist = GistDAO.getGistById(gistId);
-		
+
 		Map<String, GistFile> files = gist.getFiles();
 		Collection<GistFile> values = files.values();
 		GistFile gistFile = values.iterator().next();
-		
+
 		String fileContents = gistFile.getContent();
-		if (fileContents != null && fileContents.length() != 0)
-		{
+		if (fileContents != null && fileContents.length() != 0) {
 			try {
 				ByteArrayInputStream fileContentsStream = new ByteArrayInputStream(fileContents.getBytes("utf8"));
 				loadFromPropertiesInputStream(fileContentsStream);
 				this.workingFile = gistFile;
 				this.workingGist = gist;
-			}  catch (UnsupportedEncodingException e)
-			{
-				throw new PreferenceStorageException(String.format("File with name {%s} is not in an UTF-8.",gistFile.getFilename()));
-			}
-			catch (IOException e) {
-				throw new PreferenceStorageException(String.format("Error while loading preferences from file with name {%s}.",gistFile.getFilename()), e);
+			} catch (UnsupportedEncodingException e) {
+				throw new PreferenceStorageException(String.format("File with name {%s} is not in an UTF-8.",
+						gistFile.getFilename()));
+			} catch (IOException e) {
+				throw new PreferenceStorageException(String.format(
+						"Error while loading preferences from file with name {%s}.", gistFile.getFilename()), e);
 			}
 		}
 
@@ -77,13 +75,10 @@ public class GithubStorage implements PreferenceStorage {
 		properties.load(inputStream);
 
 		for (Entry<Object, Object> entry : properties.entrySet()) {
-			if (entry.getKey() != null)
-			{
-				if (entry.getValue() != null)
-				{
+			if (entry.getKey() != null) {
+				if (entry.getValue() != null) {
 					this.storage.put(entry.getKey().toString(), entry.getValue().toString());
-				}else
-				{
+				} else {
 					this.storage.put(entry.getKey().toString(), null);
 				}
 			}
@@ -120,6 +115,5 @@ public class GithubStorage implements PreferenceStorage {
 	public Set<String> keySet() {
 		return storage.keySet();
 	}
-
 
 }

@@ -13,33 +13,33 @@ import ru.nsu.ccfit.resync.storage.PreferenceStorageFactory;
 
 public class DiskStorageFactory implements PreferenceStorageFactory {
 
-    @Override
-    public boolean canOpen(URL location) {
+	@Override
+	public boolean canOpen(URL location) {
 
-        if (!FILE_PROTOCOL.equals(location.getProtocol())) {
-            return false;
-        }
+		if (!FILE_PROTOCOL.equals(location.getProtocol())) {
+			return false;
+		}
 
-        // TODO: add more restrictions
+		// TODO: add more restrictions
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException {
-        URI uri = null;
-        
-        if (!canOpen(location)) {
-            throw new PreferenceStorageException("url is not supported");
-        }
+	@Override
+	public PreferenceStorage open(URL location, Map<String, Object> options) throws PreferenceStorageException {
+		URI uri = null;
 
-        try {
-            uri = location.toURI();
-        } catch (URISyntaxException e) {
-            throw new PreferenceStorageException("failed to open storage", e);
-        }
+		if (!canOpen(location)) {
+			throw new PreferenceStorageException("url is not supported");
+		}
 
-        return new DiskStorage(uri);
-    }
+		try {
+			uri = location.toURI();
+		} catch (URISyntaxException e) {
+			throw new PreferenceStorageException("failed to open storage", e);
+		}
+
+		return new DiskStorage(uri);
+	}
 
 }
