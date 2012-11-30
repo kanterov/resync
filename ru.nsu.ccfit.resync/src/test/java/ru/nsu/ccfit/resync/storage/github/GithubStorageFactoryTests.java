@@ -1,5 +1,7 @@
 package ru.nsu.ccfit.resync.storage.github;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.net.URL;
 
 import org.junit.Test;
@@ -29,7 +31,7 @@ public class GithubStorageFactoryTests {
 
 	@Test
 	public void testCorrectPublicId() throws Exception {
-		openByURLString(PUBLIC_GIST_URL);
+		assertNotNull("Cannot read public gist.", openByURLString(PUBLIC_GIST_URL));
 	}
 
 	@Test(expected = PreferenceStorageException.class)
@@ -39,7 +41,7 @@ public class GithubStorageFactoryTests {
 
 	@Test
 	public void testCorrectPrivateId() throws Exception {
-		openByURLString(PRIVATE_GIST_URL);
+		assertNotNull("Cannot read private gist.", openByURLString(PRIVATE_GIST_URL));
 	}
 
 	@Test(expected = PreferenceStorageException.class)
