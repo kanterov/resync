@@ -21,11 +21,11 @@ public interface PreferenceStorage {
 
     /**
      * Return whether storage is accessible for write.
-     * 
+     *
      * <p>
      * If true, then we can @see {@link #pull()}
      * </p>
-     * 
+     *
      * @return true if storage is accessible for write
      */
     boolean canWrite();
