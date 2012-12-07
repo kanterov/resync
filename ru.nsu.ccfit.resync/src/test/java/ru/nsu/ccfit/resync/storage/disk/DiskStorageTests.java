@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -19,6 +21,9 @@ public class DiskStorageTests {
     public static final TemporaryFolder FOLDER = new TemporaryFolder();
 
     public static final String EXAMPLE = "/ru/nsu/ccfit/resync/storage/disk/example.properties";
+
+    private static final String TEMP_FILE_TO_PUSH_NAME = "push_here.txt";
+    private static final int NUMBER_OF_TESTED_VALUES = 10;
 
     private static File exampleFile;
 
@@ -61,4 +66,28 @@ public class DiskStorageTests {
         assertEquals(defaultValue, "defaultValue");
     }
 
+    @Test
+    public void testWritingProperties() throws Exception {
+        Map<String, String> testedValues = new HashMap<String, String>();
+        for (int i = 0; i < NUMBER_OF_TESTED_VALUES; ++i) {
+            testedValues.put(String.valueOf(i), String.valueOf(i + 1));
+        }
+        File tempFile = FOLDER.newFile(TEMP_FILE_TO_PUSH_NAME);
+        DiskStorage diskStorage = new DiskStorage(tempFile.toURI());
+
+        for (Map.Entry<String, String> pair : testedValues.entrySet()) {
+            diskStorage.put(pair.getKey(), pair.getValue());
+        }
+
+        diskStorage.push();
+
+        diskStorage.clear();
+        diskStorage.pull();
+        for (String key : testedValues.keySet()) {
+            String shouldBeValue = testedValues.get(key);
+            String currentValue = diskStorage.get(key, null);
+            assertEquals("Values for key " + key + " are not equal.", shouldBeValue, currentValue);
+        }
+
+    }
 }
