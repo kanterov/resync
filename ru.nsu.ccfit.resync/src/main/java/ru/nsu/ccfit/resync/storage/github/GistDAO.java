@@ -10,6 +10,7 @@ import org.eclipse.egit.github.core.service.GistService;
 import ru.nsu.ccfit.resync.storage.PreferenceStorageException;
 
 public class GistDAO {
+
     /**
      * Method to create gist.
      * 
