@@ -1,9 +1,14 @@
 package ru.nsu.ccfit.resync.storage.disk;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.Map;
 import java.util.Properties;
@@ -22,6 +27,12 @@ public class DiskStorage implements PreferenceStorage {
     private final ConcurrentHashMap<String, String> storage;
     private final File file;
 
+    /**
+     * Creates disk storage that works with File at specified <b>location</b>.
+     * 
+     * @param location
+     *            file location
+     */
     public DiskStorage(URI location) {
         this.storage = new ConcurrentHashMap<String, String>();
         this.file = new File(location);
@@ -29,12 +40,23 @@ public class DiskStorage implements PreferenceStorage {
 
     @Override
     public boolean canWrite() {
-        return false;
+        return true;
     }
 
     @Override
     public void push() throws PreferenceStorageException {
-        throw new PreferenceStorageException("not implemented");
+        try {
+            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
+            Properties properties = new Properties();
+            properties.putAll(storage);
+            properties.store(outputStream, null);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            throw new PreferenceStorageException("File to write isn't found! (" + e.getMessage() + ")", e);
+        } catch (IOException e) {
+            throw new PreferenceStorageException("Error while writing preferences to disk! (" + e.getMessage() + ")", e);
+        }
+
     }
 
     @Override
@@ -42,7 +64,7 @@ public class DiskStorage implements PreferenceStorage {
         InputStream input = null;
 
         try {
-            input = new FileInputStream(file);
+            input = new BufferedInputStream(new FileInputStream(file));
             Properties properties = new Properties();
 
             properties.load(input);
