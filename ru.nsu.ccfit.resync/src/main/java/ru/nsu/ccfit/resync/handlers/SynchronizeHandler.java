@@ -6,15 +6,13 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.osgi.framework.Bundle;
 import org.osgi.service.prefs.BackingStoreException;
 
 import ru.nsu.ccfit.resync.Activator;
-import ru.nsu.ccfit.resync.ui.ResyncWizard;
+import ru.nsu.ccfit.resync.ui.ResyncDialog;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -81,19 +79,14 @@ public class SynchronizeHandler extends AbstractHandler {
             throw new ExecutionException(e.getMessage(), e);
         }*/
         
-        try{
+        try {
         	IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-            WizardDialog wizardDialog = new WizardDialog(window.getShell(), new ResyncWizard());
-            
-            if (wizardDialog.open() == Window.OK) {
-                System.out.println("Ok pressed");
-            } else {
-                System.out.println("Cancel pressed");
-            }
-        
+            ResyncDialog dialog = new ResyncDialog(window.getShell());
+            dialog.open();
         } catch (Exception e) {
             throw new ExecutionException(e.getMessage(), e);
         }
+        
         /*
          * TODO: one day we should migrate to this mechanism after UI would be
          * implemented.

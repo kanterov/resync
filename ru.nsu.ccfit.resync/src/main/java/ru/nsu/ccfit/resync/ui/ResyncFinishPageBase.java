@@ -5,20 +5,24 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class ResyncFinishPage extends WizardPage {
+public class ResyncFinishPageBase extends WizardPage {
 	
 	public static final String PAGE_NAME = "Finish";
 	
     private Composite container;
 
-    public ResyncFinishPage() {
+    public ResyncFinishPageBase() {
 	    super(PAGE_NAME);
 	    setTitle("Finish Page");
 	    setDescription("Finish page");
     }
+    
+    public ResyncFinishPageBase(String pageName) {
+	    super(pageName);
+    }
 
     @Override
-    public void createControl(Composite parent) {
+    public void createControl(Composite parent) {		
 	    container = new Composite(parent, SWT.NULL);
 	    GridLayout layout = new GridLayout();
 	    container.setLayout(layout);
