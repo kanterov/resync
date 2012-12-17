@@ -13,7 +13,8 @@ import ru.nsu.ccfit.resync.storage.PreferenceStorageFactory;
 public class GithubStorageFactoryTests {
 
     protected static final String PUBLIC_GIST_URL = "https://gist.github.com/4170049";
-    protected static final String PUBLIC_GIST_URL_WITH_NON_EXISTENT_ID = "https://gist.github.com/409524340952434095243409524340952434095243";
+    protected static final String PUBLIC_GIST_URL_WITH_NON_EXISTENT_ID = "https://gist.github.com/40952434095243409"
+            + "5243409524340952434095243";
     protected static final String PRIVATE_GIST_URL = "https://gist.github.com/dd02a4fcd5c6869e1574";
     protected static final String GIST_URL_WITHOUT_ID = "https://gist.github.com/";
     protected static final String GIST_URL_WITHOUT_ID_AND_ENDING_SLASH = "https://gist.github.com";

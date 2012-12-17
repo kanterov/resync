@@ -70,7 +70,7 @@ public class GistDAO {
         gist.setDescription(description);
         gist.setFiles(Collections.singletonMap(fileName, file));
         GistService service = new GistService();
-        service.getClient().setOAuth2Token(authenticator.getOAuthToken());
+        setToken(service, authenticator);
 
         try {
             gist = service.createGist(gist);
@@ -79,6 +79,15 @@ public class GistDAO {
                     exception);
         }
         return gist;
+    }
+
+    private static void setToken(GistService service, Authenticator authenticator) throws PreferenceStorageException {
+        try {
+            String oAuthToken = authenticator.getOAuthToken();
+            service.getClient().setOAuth2Token(oAuthToken);
+        } catch (AuthenticateException e) {
+            throw new PreferenceStorageException("Error while loggining. Reason :" + e.getMessage(), e);
+        }
     }
 
     /**
@@ -141,7 +150,7 @@ public class GistDAO {
 
     private static Gist updateGistPrivately(Authenticator authenticator, Gist gist) throws PreferenceStorageException {
         GistService gistService = new GistService();
-        gistService.getClient().setOAuth2Token(authenticator.getOAuthToken());
+        setToken(gistService, authenticator);
 
         Gist updatedGist = null;
         try {
