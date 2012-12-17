@@ -13,17 +13,18 @@ public class PreferencesStorageUtils {
 
     public PreferencesStorageUtils() {
         factories = new ArrayList<PreferenceStorageFactory>();
-    	factories.add(new DiskStorageFactory());
-    	factories.add(new GithubStorageFactory());
-    	factories.add(new WritableGithubStorageFactory());
+        factories.add(new WritableGithubStorageFactory());
+        factories.add(new DiskStorageFactory());
+        factories.add(new GithubStorageFactory());
+
     }
-    
+
     public PreferenceStorageFactory getFactory(URL url) {
-		for (PreferenceStorageFactory factory : factories) {
-			if (factory.canOpen(url)) {
-				return factory;
-			}
-		}
-		return null;
-	}
+        for (PreferenceStorageFactory factory : factories) {
+            if (factory.canOpen(url)) {
+                return factory;
+            }
+        }
+        return null;
+    }
 }
