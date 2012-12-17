@@ -22,10 +22,10 @@ public class GithubStorage implements PreferenceStorage {
 
     private static final int EXCLUDE_FIRST_SLASH_POSITION = 1;
 
-    protected final Map<String, String> storage;
+    private final Map<String, String> storage;
     private final URL location;
-    protected Gist workingGist;
-    protected GistFile workingFile;
+    private Gist workingGist;
+    private GistFile workingFile;
 
     public GithubStorage(URL location) {
         this.location = location;
@@ -116,4 +116,15 @@ public class GithubStorage implements PreferenceStorage {
         return storage.keySet();
     }
 
+    protected Map<String, String> getStorage() {
+        return storage;
+    }
+
+    protected Gist getWorkingGist() {
+        return workingGist;
+    }
+
+    protected GistFile getWorkingFile() {
+        return workingFile;
+    }
 }
