@@ -54,7 +54,8 @@ public class DiskStorage implements PreferenceStorage {
         } catch (FileNotFoundException e) {
             throw new PreferenceStorageException("File to write isn't found! (" + e.getMessage() + ")", e);
         } catch (IOException e) {
-            throw new PreferenceStorageException("Error while writing preferences to disk! (" + e.getMessage() + ")", e);
+            String message = "Error while writing preferences to disk! (" + e.getMessage() + ")";
+            throw new PreferenceStorageException(message, e);
         }
 
     }

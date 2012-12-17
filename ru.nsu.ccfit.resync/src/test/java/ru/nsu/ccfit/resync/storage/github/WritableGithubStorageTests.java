@@ -16,8 +16,8 @@ import ru.nsu.ccfit.resync.storage.PreferenceStorageFactory;
 public class WritableGithubStorageTests extends GithubStorageFactoryTests {
 
     private static final String DEFAULT_NO_VALUE = "<NO_VALUE>";
-    protected String OTHER_USER_PRIVATE_GIST_URL = "https://gist.github.com/35ae86c511e7b81cac7a";
-    protected String OTHER_USER_PUBLIC_GIST_URL = "https://gist.github.com/4095243";
+    private static final String OTHER_USER_PRIVATE_GIST_URL = "https://gist.github.com/35ae86c511e7b81cac7a";
+    private static final String OTHER_USER_PUBLIC_GIST_URL = "https://gist.github.com/4095243";
 
     @Override
     protected PreferenceStorageFactory createStorageFactory() throws AuthenticateException {
@@ -64,7 +64,7 @@ public class WritableGithubStorageTests extends GithubStorageFactoryTests {
         pushOneRandomValue(OTHER_USER_PUBLIC_GIST_URL);
     }
 
-    private void pushOneRandomValue(String url) throws Exception, PreferenceStorageException {
+    private void pushOneRandomValue(String url) throws Exception {
         PreferenceStorage preferenceStorage = openByURLString(url);
         ArrayList<String> preferenceKeys = new ArrayList<String>(preferenceStorage.keySet());
         String someKey = preferenceKeys.get(preferenceKeys.size() - 1);
