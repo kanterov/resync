@@ -28,6 +28,9 @@ public class WritableGithubStorageFactory extends GithubStorageFactory {
         }
 
         if (canOpen(location)) {
+            if (authenticator == null) {
+                authenticator = new Authenticator();
+            }
             WritableGithubStorage writableGithubStorage = new WritableGithubStorage(location, authenticator);
             writableGithubStorage.pull();
             return writableGithubStorage;
