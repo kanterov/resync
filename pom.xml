@@ -7,6 +7,8 @@
   <packaging>pom</packaging>
   <modules>
     <module>ru.nsu.ccfit.resync</module>
+    <module>ru.nsu.ccfit.resync.p2</module>
+    <module>ru.nsu.ccfit.resync.feature</module>
   </modules>
 
   <properties>

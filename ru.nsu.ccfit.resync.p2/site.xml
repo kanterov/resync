@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ru.nsu.ccfit.resync.feature_1.0.0.qualifier.jar" id="ru.nsu.ccfit.resync.feature" version="1.0.0.qualifier">
+      <category name="resync"/>
+   </feature>
+   <category-def name="resync" label="Remote Eclipse Synchronizer"/>
+</site>
